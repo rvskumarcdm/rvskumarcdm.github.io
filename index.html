@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Senthilkumar R — Freelance Developer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0f0d;
+      --surface: #111a14;
+      --card: #172118;
+      --accent: #22c55e;
+      --accent2: #10b981;
+      --text: #e2f0e8;
+      --muted: #7a9984;
+      --border: #1f3326;
+      --radius: 14px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0a0f0d 0%, #0a2016 50%, #0a0f0d 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(34,197,94,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 auto 24px;
+      box-shadow: 0 0 0 4px var(--border), 0 0 40px rgba(34,197,94,.3);
+    }
+
+    .hero h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -.5px; }
+    .hero h1 span { color: var(--accent); }
+
+    .hero-title {
+      margin: 10px 0 20px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .hero-desc {
+      max-width: 600px;
+      margin: 0 auto 32px;
+      color: #a0aec0;
+      line-height: 1.75;
+      font-size: 1rem;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .badge {
+      background: rgba(34,197,94,.12);
+      border: 1px solid rgba(34,197,94,.3);
+      color: var(--accent);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .3px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: .95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .15s, box-shadow .15s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .section-title span { color: var(--accent); }
+    .section-sub {
+      color: var(--muted);
+      margin-bottom: 40px;
+      font-size: .95rem;
+    }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: border-color .2s, transform .2s;
+    }
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .service-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    .service-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .service-card p { color: var(--muted); font-size: .9rem; line-height: 1.65; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+    }
+    .skill-group h4 {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: .82rem;
+      color: var(--text);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 22px;
+      transition: border-color .2s, transform .2s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .project-type {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent2);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .project-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .project-card p { color: var(--muted); font-size: .88rem; line-height: 1.6; margin-bottom: 16px; }
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .stack-tag {
+      background: rgba(16,185,129,.12);
+      border: 1px solid rgba(16,185,129,.25);
+      color: #6ee7b7;
+      border-radius: 5px;
+      padding: 2px 9px;
+      font-size: .78rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .contact-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 64px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    @media (max-width: 680px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .contact-info h2 { font-size: 1.5rem; margin-bottom: 12px; }
+    .contact-info p { color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+    .contact-links { display: flex; flex-direction: column; gap: 14px; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: .95rem;
+    }
+    .contact-link:hover { color: var(--accent); }
+    .contact-link-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ── FORM ── */
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: .85rem; color: var(--muted); margin-bottom: 6px; }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 14px;
+      color: var(--text);
+      font-size: .95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { min-height: 110px; resize: vertical; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="avatar">SR</div>
+    <h1>Senthilkumar <span>R</span></h1>
+    <p class="hero-title">Freelance Software Developer</p>
+    <p class="hero-desc">
+      I build reliable, high-performance desktop and web-based applications for businesses and startups.
+      From Windows desktop tools to full-featured web platforms — clean code, on time.
+    </p>
+    <div class="badges">
+      <span class="badge">Desktop Applications</span>
+      <span class="badge">Web Applications</span>
+      <span class="badge">.NET / C#</span>
+      <span class="badge">HTML · CSS · JavaScript</span>
+      <span class="badge">SQL Server</span>
+      <span class="badge">Static Websites + SSL</span>
+      <span class="badge">AWS → Azure Migration</span>
+      <span class="badge">ADF Pipelines</span>
+      <span class="badge">PySpark · Databricks · Fabric</span>
+      <span class="badge">Google Workspace</span>
+      <span class="badge">Gmail · Outlook Setup</span>
+      <span class="badge">Hosting & DNS Management</span>
+    </div>
+    <div class="cta-row">
+      <a href="mailto:trv.skumar.cdm@gmail.com" class="btn btn-primary">Hire Me</a>
+      <a href="#projects" class="btn btn-outline">View My Work</a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section">
+    <h2 class="section-title">What I <span>Build</span></h2>
+    <p class="section-sub">End-to-end development for desktop and web platforms</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(79,142,247,.12);">🖥️</div>
+        <h3>Desktop Applications</h3>
+        <p>Windows desktop applications using .NET / C# (WinForms, WPF). Fast, offline-capable tools built for business workflows and data management.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(124,92,191,.12);">🌐</div>
+        <h3>Web-Based Applications</h3>
+        <p>Browser-based platforms and internal tools using ASP.NET and modern HTML/JS. Responsive, maintainable, and ready to deploy.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(72,187,120,.12);">🗄️</div>
+        <h3>Database Design & Integration</h3>
+        <p>SQL Server database modelling, stored procedures, and full data layer integration — from schema design to reporting queries.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(246,173,85,.12);">🔧</div>
+        <h3>Maintenance & Upgrades</h3>
+        <p>Bug fixes, performance improvements, and feature additions on existing .NET or web applications. Legacy system modernisation welcome.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(56,189,141,.12);">🔒</div>
+        <h3>Static Websites with SSL</h3>
+        <p>Budget-friendly static websites tailored to your business needs — fast, secure, and SSL-enabled. Custom design based on your requirements, hosted and live without heavy monthly costs.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(0,120,212,.12);">☁️</div>
+        <h3>AWS to Azure Database Migration</h3>
+        <p>End-to-end database migration from AWS (RDS, S3, Redshift) to Azure (SQL, ADLS, Synapse) — schema mapping, data validation, cutover planning, and zero-data-loss execution.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(0,188,212,.12);">🔁</div>
+        <h3>Azure Data Factory Pipelines</h3>
+        <p>Design and build ADF pipelines for data ingestion, transformation, and orchestration. Includes linked services, triggers, monitoring, and integration with on-premise and cloud sources.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(255,138,0,.12);">⚡</div>
+        <h3>Databricks & Fabric Notebooks (PySpark)</h3>
+        <p>Migration scripts and ETL workflows using PySpark on Azure Databricks and Microsoft Fabric. Large-scale data processing, transformation logic, and notebook-based pipeline development.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(66,133,244,.12);">🏢</div>
+        <h3>Google Workspace Setup</h3>
+        <p>Complete Google Workspace (G Suite) setup for businesses — domain verification, user provisioning, organisational units, admin console configuration, and policy management.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(234,67,53,.12);">📧</div>
+        <h3>Mail Setup & Configuration</h3>
+        <p>Business email setup on Gmail and Outlook — MX records, SPF/DKIM/DMARC configuration, signature templates, shared mailboxes, and email routing rules.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(52,168,83,.12);">💾</div>
+        <h3>Gmail Backup & Migration</h3>
+        <p>Full Gmail mailbox backup, export, and migration between accounts or domains. Ideal for business transitions, domain changes, or compliance archiving.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(0,114,198,.12);">📮</div>
+        <h3>Outlook Configuration</h3>
+        <p>Outlook setup and troubleshooting for desktop and web — IMAP/POP3/Exchange account configuration, calendar sync, shared mailboxes, and profile repairs.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(22,197,94,.12);">🌍</div>
+        <h3>Hosting & Site Management</h3>
+        <p>Ongoing website hosting management — domain renewals, DNS configuration, SSL certificate setup and renewal, uptime monitoring, and cPanel/hosting panel administration.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- SKILLS -->
+  <section class="section">
+    <h2 class="section-title">Tech <span>Stack</span></h2>
+    <p class="section-sub">Tools and technologies I work with daily</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">VB.NET</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Desktop Frameworks</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">WinForms</span>
+          <span class="skill-tag">WPF</span>
+          <span class="skill-tag">.NET Framework</span>
+          <span class="skill-tag">.NET Core</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Web Frameworks</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">ASP.NET MVC</span>
+          <span class="skill-tag">ASP.NET Web API</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">jQuery</span>
+          <span class="skill-tag">Bootstrap</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Database & Tools</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL Server</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">SSMS</span>
+          <span class="skill-tag">Visual Studio</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>IT & Productivity</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Google Workspace</span>
+          <span class="skill-tag">Gmail Backup</span>
+          <span class="skill-tag">Outlook</span>
+          <span class="skill-tag">MX / SPF / DKIM</span>
+          <span class="skill-tag">cPanel</span>
+          <span class="skill-tag">DNS Management</span>
+          <span class="skill-tag">SSL Certificates</span>
+          <span class="skill-tag">Domain Management</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Cloud & Data Engineering</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Azure Data Factory</span>
+          <span class="skill-tag">Azure Databricks</span>
+          <span class="skill-tag">Microsoft Fabric</span>
+          <span class="skill-tag">PySpark</span>
+          <span class="skill-tag">AWS RDS</span>
+          <span class="skill-tag">AWS S3</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+    <p class="section-sub">A selection of applications built for real business use</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <p class="project-type">Web Application</p>
+        <h3>Invoice Management System</h3>
+        <p>A web-based invoicing platform for small businesses — create, manage, and track invoices with client management and reporting.</p>
+        <div class="project-stack">
+          <span class="stack-tag">ASP.NET</span>
+          <span class="stack-tag">C#</span>
+          <span class="stack-tag">SQL Server</span>
+          <span class="stack-tag">HTML/JS</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <p class="project-type">Desktop Application</p>
+        <h3>iMAT — Auto Tech Management</h3>
+        <p>Desktop management tool for an automotive business — inventory, job tracking, and service records in a Windows-native interface.</p>
+        <div class="project-stack">
+          <span class="stack-tag">.NET</span>
+          <span class="stack-tag">C#</span>
+          <span class="stack-tag">WinForms</span>
+          <span class="stack-tag">SQL Server</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <p class="project-type">Custom Development</p>
+        <h3>Your Project Here</h3>
+        <p>I'm available for new freelance engagements. Desktop tools, internal web platforms, data management systems — let's discuss your requirements.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Flexible Stack</span>
+          <span class="stack-tag">On Demand</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <h2>Let's Work <span style="color:var(--accent)">Together</span></h2>
+        <p>Have a project in mind? I'd love to hear about it. Send me a message and I'll get back to you as soon as possible.</p>
+        <div class="contact-links">
+          <a href="mailto:trv.skumar.cdm@gmail.com" class="contact-link">
+            <span class="contact-link-icon">✉️</span>
+            trv.skumar.cdm@gmail.com
+          </a>
+          <a href="#" class="contact-link">
+            <span class="contact-link-icon">📍</span>
+            India · Available for Remote Work
+          </a>
+          <a href="#" class="contact-link">
+            <span class="contact-link-icon">💼</span>
+            Open to Freelance Projects
+          </a>
+        </div>
+      </div>
+      <!-- Replace YOUR_FORM_ID with the ID from formspree.io/dashboard -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="John Doe" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="john@company.com" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Tell me about your project</label>
+          <textarea id="message" name="message" placeholder="Brief description of what you need..." required></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New enquiry from your portfolio" />
+        <input type="hidden" name="_next" value="" id="thankyou-redirect" />
+        <button type="submit" class="btn btn-primary" style="width:100%" id="submit-btn">Send Message</button>
+        <p id="form-status" style="margin-top:12px;font-size:.88rem;text-align:center;display:none;"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Senthilkumar R · Freelance Software Developer · Built with pure HTML &amp; CSS</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      status.style.display = 'none';
+
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          status.style.color = '#22c55e';
+          status.textContent = '✓ Message sent! I\'ll get back to you soon.';
+          form.reset();
+        } else {
+          const json = await res.json();
+          status.style.color = '#f87171';
+          status.textContent = json.errors ? json.errors.map(e => e.message).join(', ') : 'Something went wrong. Please try again.';
+        }
+      } catch (_) {
+        status.style.color = '#f87171';
+        status.textContent = 'Network error. Please try again.';
+      }
+      status.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>
